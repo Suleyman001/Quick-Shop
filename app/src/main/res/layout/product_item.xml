@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    tools:ignore="HardcodedText">
+
+
+    <ImageView
+        android:id="@+id/productImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="108dp"
+        android:contentDescription="Product Image"
+        android:src="@drawable/iphone15"
+        app:layout_constraintStarte_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_marginEnd="16dp" />
+
+    <TextView
+        android:id="@+id/productName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="192dp"
+        android:text="product Name"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/productImage"
+        app:layout_constraintHorizontal_bias="0.949"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/productPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="799€"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintStart_toStartOf="@+id/productImage"
+        app:layout_constraintTop_toBottomOf="@+id/productName" />
+
+    <Button
+        android:id="@+id/addToCartButton"
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
+        android:layout_marginTop="12dp"
+        android:text="Add to Cart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/productName"
+        app:layout_constraintTop_toBottomOf="@+id/productPrice" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
