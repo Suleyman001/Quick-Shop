@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "999829172817",
+    "project_id": "fir-authentication-e827b",
+    "storage_bucket": "fir-authentication-e827b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:999829172817:android:4462abcf0d4b5012d03e70",
+        "android_client_info": {
+          "package_name": "nje.hu.quickshop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSIdbhZCWWm300VR9O6z3JAxhfUTbxLlg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

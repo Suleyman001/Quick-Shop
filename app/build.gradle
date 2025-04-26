@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -41,6 +42,17 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
+    // Firebase BoM (Bill of Materials)
+    implementation platform('com.google.firebase:firebase-bom:33.13.0')
+
+    // Kullanmak istediğin Firebase servisleri, örnek:
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation libs.firebase.auth
+    implementation libs.credentials
+    implementation libs.credentials.play.services.auth
+    implementation libs.googleid
+    implementation libs.firebase.database
+
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
