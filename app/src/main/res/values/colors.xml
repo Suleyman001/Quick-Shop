@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="textColor">#FFFFFFFF</color>
+    <color name="buttonColor">#191E30</color>
+    <color name="endColor">#191E30</color>
+    <color name="startColor">#FF9800</color>
+    <color name="CenterColor">#73562C</color>
+    <color name="my_status_bar_color">#191E30</color>
+
+
 </resources>
