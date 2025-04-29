@@ -11,8 +11,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuickShop">
+
+        <!-- Yeni eklenen activity'ler -->
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.registration.RegistrationActivity" />
+        <activity android:name=".ui.myaccount.MyAccountActivity" />
+        <activity android:name=".ui.ProductDetailActivity"
+            android:exported="false"
+            />
+
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.login.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
