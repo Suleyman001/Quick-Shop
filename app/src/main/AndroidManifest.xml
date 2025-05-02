@@ -14,14 +14,14 @@
 
         <!-- Yeni eklenen activity'ler -->
         <activity android:name=".MainActivity" />
-        <activity android:name=".ui.registration.RegistrationActivity" />
+        <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".ui.myaccount.MyAccountActivity" />
         <activity android:name=".ui.ProductDetailActivity"
             android:exported="false"
             />
 
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".ui.registration.RegistrationActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
