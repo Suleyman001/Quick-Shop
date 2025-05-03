@@ -7,4 +7,27 @@ fragment_cart.xml: Shows all products in the basket as a list (for example, a li
 */
 
 public class CardItem {
+    private Product product;
+    private int quantity;
+
+    public CardItem(Product product, int quantity) {
+        this.product = product;
+        this.quantity = quantity;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
