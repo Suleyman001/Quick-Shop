@@ -7,14 +7,26 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;                                                      import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 import nje.hu.quickshop.R;
+import nje.hu.quickshop.adapters.ShoppingHistoryAdapter;
+import nje.hu.quickshop.ui.ShoppingItem;
 import nje.hu.quickshop.ui.login.LoginActivity;
 
 public class MyAccountActivity extends AppCompatActivity {
@@ -53,6 +65,43 @@ public class MyAccountActivity extends AppCompatActivity {
         Button deleteButton = findViewById(R.id.profile_deleteButton);
         deleteButton.setOnClickListener(v -> showDeleteConfirmationDialog());
 
+
+        // Initialize RecyclerView and fetch user's shopping history from Firebase
+        // This displays the user's past purchases in a scrollable list
+
+
+        RecyclerView recyclerView = findViewById(R.id.shopping_history_recyclerView);
+        List<ShoppingItem> shoppingItems = new ArrayList<>();
+        ShoppingHistoryAdapter adapter = new ShoppingHistoryAdapter(shoppingItems);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+
+        //firebase logic
+        String userName = getIntent().getStringExtra("user_name");
+        if (userName != null && !userName.isEmpty()) {
+            DatabaseReference historyRef = FirebaseDatabase.getInstance()
+                    .getReference("shopping_history")
+                    .child(userName);
+
+            historyRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
+                        ShoppingItem item = itemSnapshot.getValue(ShoppingItem.class);
+                        if (item != null) {
+                            shoppingItems.add(item);
+                            adapter.notifyItemInserted(shoppingItems.size() - 1); // Efficient!
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(MyAccountActivity.this, "Failed to load history", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
     }
 
