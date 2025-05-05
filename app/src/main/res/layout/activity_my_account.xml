@@ -103,12 +103,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_emailTextView" />
 
+<<<<<<< HEAD
+=======
+
+    <!--to display the shopping history-->
+
+    <TextView
+        android:id="@+id/text_shopping_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Shopping History"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/shopping_history_recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_logoutButton"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/shopping_history_recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="4dp"
+        android:clipToPadding="false"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/profile_deleteButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_shopping_history"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/item_shopping_history" />
+
+>>>>>>> 28b180a (Implemented shopping history display in MyAccountActivity)
     <Button
         android:id="@+id/profile_deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+<<<<<<< HEAD
         android:layout_marginTop="145dp"
+=======
+        android:layout_marginTop="150dp"
+>>>>>>> 28b180a (Implemented shopping history display in MyAccountActivity)
         android:layout_marginEnd="16dp"
         android:background="@drawable/buttonarkaplan"
         android:text="Delete This Account"
