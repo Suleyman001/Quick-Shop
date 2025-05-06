@@ -7,43 +7,37 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+
+import java.util.ArrayList;
+import java.util.List;
 
 import nje.hu.quickshop.R;
+import nje.hu.quickshop.adapters.ProductAdapter;
+import nje.hu.quickshop.entities.Product;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements ProductAdapter.OnProductClickListener {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private RecyclerView recyclerView;
+    private ProductAdapter productAdapter;
+    private List<Product> productList;
 
     public HomeFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HomeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString("param1", param1);
+        args.putString("param2", param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,16 +45,36 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+        // Initialize the product list
+        productList = new ArrayList<>();
+        // Add some sample products
+        productList.add(new Product(1, "Product 1", 10.00, "Description of Product 1"));
+        productList.add(new Product(2, "Product 2", 15.00, "Description of Product 2"));
+        productList.add(new Product(3, "Product 3", 20.00, "Description of Product 3"));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+
+        // Initialize RecyclerView
+        recyclerView = rootView.findViewById(R.id.recycler_view_products);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+
+        // Initialize the ProductAdapter and set it to the RecyclerView
+        productAdapter = new ProductAdapter(productList, this);
+        recyclerView.setAdapter(productAdapter);
+
+        return rootView;
+    }
+
+    @Override
+    public void onAddToCart(Product product) {
+        // Handle add to cart functionality here
+
+        System.out.println("Added " + product.getName() + " to cart");
     }
 }
