@@ -1,9 +1,14 @@
 package nje.hu.quickshop.ui.login;
 
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
+
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import nje.hu.quickshop.R;
+import nje.hu.quickshop.ui.registration.RegistrationActivity;
+
 import nje.hu.quickshop.databinding.ActivityLoginBinding;
 import nje.hu.quickshop.ui.myaccount.MyAccountActivity;
 
@@ -31,11 +38,20 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Status bar rengini ayarla
+        // Status bar color. (couldn't do it in themes.xml so i just code it)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.my_status_bar_color));
         }
+
+        TextView newAccountText = findViewById(R.id.login_newAccountText);
+        newAccountText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
 
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
 
