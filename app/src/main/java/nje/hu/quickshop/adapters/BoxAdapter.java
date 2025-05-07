@@ -16,6 +16,7 @@ import java.util.List;
 
 import nje.hu.quickshop.R;
 import nje.hu.quickshop.entities.CardItem;
+import nje.hu.quickshop.managers.CartManager;
 
 public class BoxAdapter extends RecyclerView.Adapter<BoxAdapter.ViewHolder>  {
     private List<CardItem> cartItems;
@@ -78,19 +79,36 @@ public class BoxAdapter extends RecyclerView.Adapter<BoxAdapter.ViewHolder>  {
 
         holder.decreaseButton.setOnClickListener(v -> {
             int currentQty = currentItem.getQuantity();
+            String productId = String.valueOf(currentItem.getProduct().getId());
+
             if (currentQty > 1) {
                 currentItem.setQuantity(currentQty - 1);
 
-                //Update the quantity in firebase
-                String productId = String.valueOf(currentItem.getProduct().getId());
+                // Update Firebase
                 FirebaseDatabase.getInstance().getReference("cartItems")
                         .child(productId)
                         .child("quantity")
                         .setValue(currentQty - 1);
 
                 notifyItemChanged(position);
+
+            } else {
+                // Quantity is 0, remove the item
+                cartItems.remove(position);
+
+                // Remove from Firebase
+                FirebaseDatabase.getInstance().getReference("cartItems")
+                        .child(productId)
+                        .removeValue();
+
+                //update CartManager
+                CartManager.getInstance().removeProductFromCart(currentItem.getProduct().getId());
+
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, cartItems.size());
             }
         });
+
 
     }
 

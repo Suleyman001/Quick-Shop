@@ -45,15 +45,17 @@ public class BoxFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         // Just for testing  data - replace with actual cart retrieval logic
-        cartItems = new ArrayList<>();
+       /** cartItems = new ArrayList<>();
         Product sampleProduct = new Product(1, "Sample Product", 9.99, "Description");
         cartItems.add(new CardItem(sampleProduct, 2));
         cartItems.add(new CardItem(sampleProduct, 1));
+        **/
+        //  Use CartManager here to fetch actual cart items
+        cartItems = CartManager.getInstance().getCartItems();
 
         boxAdapter = new BoxAdapter(cartItems);
         recyclerView.setAdapter(boxAdapter);
     }
-
 
 
 
