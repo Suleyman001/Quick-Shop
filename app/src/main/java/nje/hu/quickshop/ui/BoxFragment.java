@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,8 @@ import java.util.List;
 import nje.hu.quickshop.R;
 import nje.hu.quickshop.adapters.BoxAdapter;
 import nje.hu.quickshop.entities.CardItem;
+import nje.hu.quickshop.managers.CartManager;
+
 import nje.hu.quickshop.entities.Product;
 public class BoxFragment extends Fragment {
     private RecyclerView recyclerView;
@@ -50,5 +53,9 @@ public class BoxFragment extends Fragment {
         boxAdapter = new BoxAdapter(cartItems);
         recyclerView.setAdapter(boxAdapter);
     }
+
+
+
+
 
 }
