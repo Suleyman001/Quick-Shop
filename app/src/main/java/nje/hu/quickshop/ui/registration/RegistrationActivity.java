@@ -26,17 +26,17 @@ public class RegistrationActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         binding.registerSaveButton.setOnClickListener(view -> {
-            // Buraya Firebase'e veri yazma işlemi eklenebilir
+            // Data writing to firebase can be added here
             String name = binding.registerNameText.getText().toString();
             String email = binding.registerEmailText.getText().toString();
             String password = binding.registerPasswordText.getText().toString();
             mDatabase.child("users").child(name).child("email").setValue(email)
                     .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(this, "Kayıt başarılı!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Registration Successful!", Toast.LENGTH_SHORT).show();
                     });
             mDatabase.child("users").child(name).child("password").setValue(password)
                     .addOnFailureListener(e -> {
-                        Toast.makeText(this, "Kayıt başarısız: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Registration Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         });
 

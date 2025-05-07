@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             String enteredPassword = binding.loginPasswordText.getText().toString().trim();
 
             if (enteredEmail.isEmpty() || enteredPassword.isEmpty()) {
-                Toast.makeText(this, "Lütfen tüm alanları doldurun!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please fill in all fields!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -97,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(LoginActivity.this, "Veri alınamadı: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         });
