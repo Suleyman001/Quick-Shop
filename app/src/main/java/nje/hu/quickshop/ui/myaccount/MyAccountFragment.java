@@ -1,5 +1,7 @@
 package nje.hu.quickshop.ui.myaccount;
 
+import static android.content.Intent.getIntent;
+
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -52,12 +54,15 @@ public class MyAccountFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Normally you'd pass data from Login via SharedPreferences or ViewModel
-        name = "John Doe";  // Replace with real user session
-        email = "john@example.com";
+
 
         nameTextView = view.findViewById(R.id.profile_nameTextView);
         emailTextView = view.findViewById(R.id.profile_emailTextView);
+
+        Intent receivedIntent = requireActivity().getIntent();
+        String name = receivedIntent.getStringExtra("user_name");
+        String email = receivedIntent.getStringExtra("user_email");
+
 
         nameTextView.setText(name != null ? name : "Name not found");
         emailTextView.setText(email != null ? email : "Email not found");
@@ -107,6 +112,8 @@ public class MyAccountFragment extends Fragment {
             });
         }
     }
+
+
 
     private void showUpdateDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());

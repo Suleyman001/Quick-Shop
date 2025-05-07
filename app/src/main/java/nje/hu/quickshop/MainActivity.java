@@ -10,6 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import nje.hu.quickshop.ui.BoxFragment;
 import nje.hu.quickshop.ui.home.HomeFragment;
+import nje.hu.quickshop.ui.myaccount.MyAccountActivity;
 import nje.hu.quickshop.ui.myaccount.MyAccountFragment;
 
 public class MainActivity extends AppCompatActivity {
