@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +19,7 @@ import java.util.List;
 import nje.hu.quickshop.R;
 import nje.hu.quickshop.adapters.ProductAdapter;
 import nje.hu.quickshop.entities.Product;
+import nje.hu.quickshop.managers.CartManager;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,8 +76,8 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
 
     @Override
     public void onAddToCart(Product product) {
-        // Handle add to cart functionality here
-
-        System.out.println("Added " + product.getName() + " to cart");
+        CartManager.getInstance().addToCart(product);  // Adds or increments quantity
+        Toast.makeText(getContext(), product.getName() + " added to cart", Toast.LENGTH_SHORT).show();
     }
+
 }

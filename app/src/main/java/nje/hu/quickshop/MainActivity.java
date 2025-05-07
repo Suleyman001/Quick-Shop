@@ -1,34 +1,57 @@
 package nje.hu.quickshop;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.view.Window;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import nje.hu.quickshop.ui.BoxFragment;
+import nje.hu.quickshop.ui.home.HomeFragment;
+import nje.hu.quickshop.ui.myaccount.MyAccountActivity;
+import nje.hu.quickshop.ui.myaccount.MyAccountFragment;
 
 public class MainActivity extends AppCompatActivity {
+
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        // Load default fragment
+        loadFragment(new HomeFragment());
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            Fragment selectedFragment = null;
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.menu_home) {
+                selectedFragment = new HomeFragment();
+            } else if (itemId == R.id.menu_shop) {
+                selectedFragment = new HomeFragment(); // Replace with your ShopFragment if needed
+            } else if (itemId == R.id.menu_cart) {
+                selectedFragment = new BoxFragment();
+            } else if (itemId == R.id.menu_account) {
+                selectedFragment = new MyAccountFragment();
+            }
+
+            return loadFragment(selectedFragment);
         });
+    }
 
-        // Status bar color. (somehow couldn't do it in themes.xml so i just code it)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.my_status_bar_color));
+    private boolean loadFragment(Fragment fragment) {
+        if (fragment != null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+            return true;
         }
-
+        return false;
     }
 }

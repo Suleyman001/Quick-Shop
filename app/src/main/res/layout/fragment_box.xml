@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+   >
 
 
     <!--
@@ -19,7 +20,7 @@ fragment_cart.xml: Shows all products in the basket as a list (for example, a li
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginStart="10dp"
-        android:text="Cart"
+        android:text="My Cart"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
