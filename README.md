@@ -45,7 +45,7 @@ Upon launching QuickShop, users are greeted with a clean login/register screen. 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/quickshop.git
+   git clone https://github.com/Suleyman001/quickshop.git
    ```
 2. Open the project in **Android Studio**.
 3. Set up Firebase:
