@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-
+    <!-- fragment layout -->
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -13,5 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/constraint_background"/>
+
 
 </FrameLayout>

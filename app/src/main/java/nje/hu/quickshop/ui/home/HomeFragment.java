@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment implements ProductAdapter.OnProductCl
 
         // Initialize the product list
         productList = new ArrayList<>();
-        // Add some sample products (replace with actual data)
+        // Add some sample products
         productList.add(new Product(1, "Product 1", 10.00, "Description of Product 1"));
         productList.add(new Product(2, "Product 2", 15.00, "Description of Product 2"));
         productList.add(new Product(3, "Product 3", 20.00, "Description of Product 3"));

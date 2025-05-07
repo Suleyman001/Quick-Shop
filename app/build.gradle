@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    id 'com.google.gms.google-services'
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -38,6 +38,10 @@ dependencies {
     implementation libs.material
     implementation libs.activity
     implementation libs.constraintlayout
+    implementation libs.junit.junit
+    implementation libs.ext.junit
+    implementation libs.espresso.core
+    testImplementation 'junit:junit:4.13.2'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation libs.navigation.fragment
