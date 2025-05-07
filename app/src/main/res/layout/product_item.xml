@@ -15,7 +15,7 @@
         android:layout_marginTop="108dp"
         android:contentDescription="Product Image"
         android:src="@drawable/iphone15"
-        app:layout_constraintStarte_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText"
         tools:layout_editor_absoluteX="23dp"
