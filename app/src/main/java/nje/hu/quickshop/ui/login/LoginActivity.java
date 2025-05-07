@@ -16,9 +16,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import nje.hu.quickshop.MainActivity;
 import nje.hu.quickshop.R;
 import nje.hu.quickshop.databinding.ActivityLoginBinding;
-import nje.hu.quickshop.ui.myaccount.MyAccountActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // Status bar rengini ayarla
+        // Change status bar color
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.setStatusBarColor(ContextCompat.getColor(this, R.color.my_status_bar_color));
@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
             String enteredPassword = binding.loginPasswordText.getText().toString().trim();
 
             if (enteredEmail.isEmpty() || enteredPassword.isEmpty()) {
-                Toast.makeText(this, "Lütfen tüm alanları doldurun!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please fill in all fields!", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -64,12 +64,13 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                     if (matchedUser != null) {
-                        String name = matchedUser.getKey(); // Key is the name of the person
+                        String name = matchedUser.getKey(); // Username as key
                         String email = matchedUser.child("email").getValue(String.class);
 
                         Toast.makeText(LoginActivity.this, "Successful Login!", Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(LoginActivity.this, MyAccountActivity.class);
+                        // ✅ Navigate to MainActivity (home with bottom nav)
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra("user_name", name);
                         intent.putExtra("user_email", email);
                         startActivity(intent);
@@ -81,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(LoginActivity.this, "Veri alınamadı: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Failed to fetch data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         });
